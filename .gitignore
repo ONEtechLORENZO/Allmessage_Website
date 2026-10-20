@@ -1,0 +1,13 @@
+# dependencies and build output
+node_modules/
+.next/
+out/
+
+# local env files (keep .env.example)
+.env
+.env*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
