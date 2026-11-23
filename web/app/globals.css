@@ -657,3 +657,21 @@ body.demo-lock .wa-float { opacity: 0; pointer-events: none; }
   .wa-float { width: 52px; height: 52px; }
   .wa-float svg { width: 27px; height: 27px; }
 }
+
+/* "prodotto di One Tech" with the One Tech logo: header (next to the Allmessage logo) and footer */
+/* laid out like the Argo header: no divider, "prodotto di" and the One Tech logo sit on the Allmessage baseline
+   (the bottom of the letters, above the tail of the "g", about 22% of the logo height) */
+.brand-wrap { display: flex; align-items: flex-end; gap: 12px; justify-self: start; min-width: 0; }
+.brand-by { display: inline-flex; align-items: flex-end; gap: 7px; margin-bottom: 6px; font-size: 12px; font-weight: 500; line-height: 1; color: #6b7a90; white-space: nowrap; transition: opacity .25s ease; }
+.brand-by span { margin-bottom: -.18em; }
+.brand-by img { display: block; width: auto; height: 21px; }
+.brand-by:hover { opacity: .75; }
+@media (max-width: 640px) {
+  .brand-wrap { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .brand-by { margin-bottom: 0; font-size: 10px; gap: 5px; }
+  .brand-by img { height: 15px; }
+}
+.footer-by { display: flex; align-items: center; flex-wrap: wrap; gap: .45em; align-self: center; margin: 0; } /* group centred on the Allmessage logo, text centred on the One Tech logo */
+.footer-by a { display: inline-flex; padding: 0; }
+/* the shadow lifts the logo off the blue */
+.footer-by-logo { display: block; width: auto; height: 1.55em; filter: drop-shadow(0 1px 2px rgba(8, 20, 70, .55)) drop-shadow(0 4px 12px rgba(8, 20, 70, .5)); }
