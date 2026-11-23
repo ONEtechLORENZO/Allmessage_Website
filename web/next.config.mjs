@@ -1,12 +1,13 @@
-// Address of the Milo app (its own Next.js project in Desktop\Milo\web, port 5050).
-// Every /products/milo/... request is handed to it, so Milo looks like part of this site
-// (Next.js "multi-zones"). In production, set MILO_URL to wherever Milo is deployed.
-if (process.env.NODE_ENV === "production") {
-  if (!process.env.SITE_URL) console.warn("[seo] SITE_URL is not set: canonical URL, sitemap and social-preview address are incomplete. See .env.example.");
-  if (!process.env.MILO_URL) console.warn("[milo] MILO_URL is not set: /products/milo/ is forwarded to http://localhost:5050. See .env.example.");
+if (process.env.NODE_ENV === "production" && !process.env.SITE_URL) {
+  console.warn("[seo] SITE_URL is not set: canonical URL, sitemap and social-preview address are incomplete. See .env.example.");
 }
 
-const MILO_URL = (process.env.MILO_URL || "http://localhost:5050").replace(/\/$/, "");
+// Address of the Milo app (its own Next.js project). Every /products/milo/... request is handed to it,
+// so Milo looks like part of this site (Next.js "multi-zones").
+// Milo is switched on only when MILO_URL is set: without it there are no rewrites (so /products/milo/
+// is a 404) and the pages carry no Milo links (app/_home/markup.js). For local work put
+// MILO_URL=http://localhost:5050 in .env.local.
+const MILO_URL = (process.env.MILO_URL || "").trim().replace(/\/$/, "");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,6 +25,7 @@ const nextConfig = {
     return [{ source: "/:file(AllMessage_offline.*\\.html)", destination: "/", permanent: true }];
   },
   async rewrites() {
+    if (!MILO_URL) return [];
     // Milo's page addresses end with "/", its files (scripts, images, sitemap.xml) do not.
     return [
       { source: "/products/milo/:file(.*\\.\\w+)", destination: `${MILO_URL}/products/milo/:file` },

@@ -26,14 +26,16 @@ Copy `.env.example` to `.env.local` (or set them on the host):
 
 - `SITE_URL`: the public address, `https://allmessage.otech.one`. Without it the canonical URL,
   sitemap.xml and JSON-LD addresses are left out.
-- `MILO_URL`: where Milo is deployed (see below).
+- `MILO_URL`: where Milo is deployed (see below). Leave it empty to switch Milo off.
+  For local work use `MILO_URL=http://localhost:5050`.
 
 ## How Milo is attached
 
 `next.config.mjs` forwards every `/products/milo/...` request to the Milo app
 (Next.js "multi-zones"). Milo keeps its own code, build and deploy.
-In production set the `MILO_URL` environment variable to Milo's deployed address
-(default: `http://localhost:5050`).
+Milo is on only when `MILO_URL` is set to Milo's address. Without it the pages have no
+Milo links (the header tab is removed, the footer lists Milo as plain text), `/products/milo/`
+returns 404 and robots.txt doesn't list Milo's sitemap.
 
 ## Where to edit
 
