@@ -648,3 +648,12 @@ body.demo-lock .wa-float { opacity: 0; pointer-events: none; }
   /* bird a touch smaller */
   .swallow { width: 54px; }
 }
+
+/* phones: Integrazioni texts appear right away (no 1.6 s wait) and the WhatsApp button covers less text */
+@media (max-width: 800px) {
+  .integ-anim.is-in .integ-item { transition-delay: calc(.15s + var(--i) * .1s); }
+}
+@media (max-width: 640px) {
+  .wa-float { width: 52px; height: 52px; }
+  .wa-float svg { width: 27px; height: 27px; }
+}

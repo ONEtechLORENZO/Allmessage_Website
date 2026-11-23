@@ -136,7 +136,7 @@ playCurrent();
     document.querySelectorAll('[data-perch]').forEach(el => {
       if (el.closest('[hidden]')) return; // block hidden on the page
       const pt = perchPoint(el), vy = pt.y - scrollY;
-      if (vy < vh * .1 || vy > vh * .9) return;
+      if (vy < vh * .2 || vy > vh * .85) return;
       const d = Math.abs(vy - vh * .4);
       if (d < bestD) { bestD = d; best = el; }
     });
@@ -145,11 +145,15 @@ playCurrent();
 
   function inHero() { return hero.getBoundingClientRect().bottom > innerHeight * .55; }
 
-  addEventListener('scroll', () => {
-    lastScroll = performance.now();
-    perch = null;
-    landed = false;
-  }, { passive: true });
+  // Scrolling no longer scares the bird off: it stays on its perch and moves with the page.
+  addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+
+  // It only takes off when its perch is about to leave the screen (under the header or past the bottom).
+  function perchLeaving() {
+    if (!perch) return false;
+    const vy = perchPoint(perch).y - scrollY;
+    return vy < innerHeight * .12 || vy > innerHeight * .95;
+  }
 
   function frame(now) {
     const dt = Math.min(now - last, 40) / 1000;
@@ -163,7 +167,8 @@ playCurrent();
       if (visible) { pos.x = scrollX + innerWidth + 80; pos.y = scrollY + innerHeight * .15; vel.x = vel.y = 0; perch = null; landed = false; }
     }
 
-    if (!perch && visible && now - lastScroll > 260) perch = choosePerch();
+    if (perch && perchLeaving()) { perch = null; landed = false; }
+    if (!perch && visible) perch = choosePerch();
 
     let tx, ty;
     if (!visible) { tx = scrollX + innerWidth + 120; ty = scrollY + innerHeight * .1; }
