@@ -31,6 +31,17 @@ public/
   media/, brand/     images, videos, logos
 ```
 
+## SEO
+
+- `app/layout.js` — title, description, Open Graph / Twitter card, canonical.
+- `app/page.js` — JSON-LD (`Organization` + `SoftwareApplication`).
+- `app/robots.js`, `app/sitemap.js` — `/robots.txt`, `/sitemap.xml`.
+- `app/icon.png`, `app/apple-icon.png`, `app/opengraph-image.png` (+ `.alt.txt`) — favicon, touch icon, social preview.
+- `lib/site.js` — reads `SITE_URL`.
+
+Set `SITE_URL` (see `.env.example`) to the production origin before going live. Until then the canonical
+URL, the sitemap entries and the JSON-LD `url` are omitted, and `next build` prints a warning.
+
 ## "Richiedi Demo" form
 
 Every `DemoLink` (header button, hero link, "Contattaci" on the plans) opens the form;

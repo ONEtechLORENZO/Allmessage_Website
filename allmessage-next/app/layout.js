@@ -1,5 +1,6 @@
 import localFont from 'next/font/local';
 import Swallow from '@/components/Swallow';
+import { METADATA_BASE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/site';
 import './globals.css';
 
 const sora = localFont({
@@ -11,8 +12,25 @@ const sora = localFont({
 });
 
 export const metadata = {
-  title: 'AllMessage — Tutte le conversazioni, un unico posto',
-  description: 'AllMessage riunisce le conversazioni della tua azienda. Gestisci messaggi, automazioni e integrazioni in un unico posto.',
+  metadataBase: METADATA_BASE,
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  // Absolute URLs only once the real domain is known (SITE_URL).
+  ...(SITE_URL && { alternates: { canonical: '/' } }),
+  openGraph: {
+    type: 'website',
+    locale: 'it_IT',
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    ...(SITE_URL && { url: '/' }),
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export const viewport = {

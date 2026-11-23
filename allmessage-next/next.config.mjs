@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV === 'production' && !process.env.SITE_URL) {
+  console.warn('[seo] SITE_URL is not set: canonical URL, sitemap and social-preview image URL are incomplete. See .env.example.');
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
