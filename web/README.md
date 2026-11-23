@@ -20,6 +20,14 @@ npm run build && npm start
 Open http://localhost:2060 (or http://192.168.0.17:2060 from another device on the same Wi-Fi).
 The **Milo** tab in the header opens http://localhost:2060/products/milo/.
 
+## Settings for the live site
+
+Copy `.env.example` to `.env.local` (or set them on the host):
+
+- `SITE_URL`: the public address, `https://allmessage.otech.one`. Without it the canonical URL,
+  sitemap.xml and JSON-LD addresses are left out.
+- `MILO_URL`: where Milo is deployed (see below).
+
 ## How Milo is attached
 
 `next.config.mjs` forwards every `/products/milo/...` request to the Milo app
@@ -34,5 +42,7 @@ In production set the `MILO_URL` environment variable to Milo's deployed address
 | Page text and layout (header, sections, footer, demo form) | `app/home-markup.html` |
 | Styles | `app/globals.css` |
 | Animations, slider, plans toggle, demo form sending, WhatsApp button | `public/js/site.js` |
-| Page title, description, theme colour | `app/head.json` |
+| Page title, description, theme colour | `app/head.json` (English: `meta` in `app/i18n/en.json`) |
+| Canonical URL, hreflang, social preview, JSON-LD | `lib/site.js` (address from `SITE_URL`) |
+| robots.txt, sitemap.xml | `app/robots.js`, `app/sitemap.js` |
 | Images and videos | `public/media/`, `public/brand/` |

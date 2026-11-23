@@ -1,6 +1,11 @@
 // Address of the Milo app (its own Next.js project in Desktop\Milo\web, port 5050).
 // Every /products/milo/... request is handed to it, so Milo looks like part of this site
 // (Next.js "multi-zones"). In production, set MILO_URL to wherever Milo is deployed.
+if (process.env.NODE_ENV === "production") {
+  if (!process.env.SITE_URL) console.warn("[seo] SITE_URL is not set: canonical URL, sitemap and social-preview address are incomplete. See .env.example.");
+  if (!process.env.MILO_URL) console.warn("[milo] MILO_URL is not set: /products/milo/ is forwarded to http://localhost:5050. See .env.example.");
+}
+
 const MILO_URL = (process.env.MILO_URL || "http://localhost:5050").replace(/\/$/, "");
 
 /** @type {import('next').NextConfig} */
