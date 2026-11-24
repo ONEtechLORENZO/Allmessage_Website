@@ -1,0 +1,148 @@
+/* Animated "milo" logo, from milo_logo_animazione_v1 (without its turquoise page background). */
+.milo-logo {
+  --ink: #04282b;
+  --knob: #ffffff;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.milo-night {
+  --ink: #d9f3f1;
+}
+
+/* letters draw one after another */
+.milo-stroke {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 28;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  /* Hidden until its turn: a zero-length line with round ends would otherwise show as a dot. */
+  opacity: 0;
+  transition: stroke 0.8s;
+}
+.milo-play .milo-stroke {
+  animation: milo-draw 0.7s cubic-bezier(0.65, 0, 0.2, 1) both;
+  animation-delay: calc(var(--n) * 0.13s + 0.15s);
+}
+@keyframes milo-draw {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* the o is a dial: a small white knob runs around the ring */
+.milo-dial {
+  cursor: pointer;
+}
+.milo-dial:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 6px;
+  border-radius: 50%;
+}
+.milo-knob-pop {
+  transform-origin: 385px 100px;
+  transform: scale(0);
+}
+.milo-play .milo-knob-pop {
+  animation: milo-pop 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) 1.45s forwards;
+}
+@keyframes milo-pop {
+  to { transform: scale(1); }
+}
+.milo-knob {
+  transform-origin: 385px 150px;
+  transition: transform 0.75s cubic-bezier(0.34, 1.5, 0.5, 1);
+}
+.milo-knob.milo-long {
+  transition-duration: 1.25s;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.2, 1.15);
+}
+.milo-knob.milo-instant {
+  transition: none;
+}
+.milo-knob circle {
+  fill: var(--knob);
+}
+
+.milo-msg {
+  font: 500 15px var(--font-sora), sans-serif;
+  fill: var(--ink);
+  opacity: 0;
+  transform: translateX(-8px);
+  cursor: pointer;
+  transition: opacity 0.45s, transform 0.45s cubic-bezier(0.3, 1.3, 0.5, 1);
+}
+.milo-msg.milo-seen {
+  opacity: 0.52;
+  transform: none;
+}
+.milo-msg.milo-active {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milo-play .milo-stroke { animation: none; stroke-dashoffset: 0; opacity: 1; }
+  .milo-play .milo-knob-pop { animation: none; transform: none; }
+  .milo-knob, .milo-msg { transition: none; }
+}
+
+/* phones: logo only, no messages next to the dial */
+@media (max-width: 767px) {
+  .milo-msg { display: none; }
+}
+
+/* Description text: characters appear one after another once the logo has drawn. */
+.milo-type {
+  font-family: var(--font-sora), sans-serif;
+  font-weight: 500;
+  color: #04282b;
+  line-height: 1.45;
+}
+.milo-type-word {
+  white-space: nowrap; /* lines only break between words */
+}
+.milo-type-ch {
+  display: inline-block;
+  opacity: 0;
+}
+.milo-type-play .milo-type-ch {
+  animation: milo-type-in 0.32s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+@keyframes milo-type-in {
+  0% { opacity: 0; transform: translateY(-0.35em) scale(0.6); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .milo-type-ch { opacity: 1; }
+  .milo-type-play .milo-type-ch { animation: none; }
+}
+
+/* phones: the description sits on a soft white panel so it reads well over the coloured tiles */
+@media (max-width: 767px) {
+  .milo-type-panel {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 30px -14px rgba(4, 40, 43, 0.4);
+    opacity: 0;
+  }
+  .milo-type-play.milo-type-panel { animation: milo-panel-in 0.6s ease 1.4s forwards; }
+}
+@keyframes milo-panel-in { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .milo-type-panel { opacity: 1; } .milo-type-play.milo-type-panel { animation: none; } }

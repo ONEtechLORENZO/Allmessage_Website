@@ -1,0 +1,113 @@
+/* Footer (Footer.tsx): a rounded card with a big logo, 3D boxes in the middle and two link columns. */
+.ft {
+  --ink: #04282b;
+  --muted: #4a5a5c;
+  background: #fff;
+  color: var(--ink);
+  padding: 48px 20px 40px;
+}
+.ft-card {
+  position: relative;
+  max-width: 1560px;
+  margin: 0 auto;
+  display: grid;
+  gap: 36px;
+  padding: 40px 28px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #f8f9fb, #f1f3f6);
+  box-shadow: 0 1px 2px rgba(36, 79, 85, 0.06), 0 28px 50px -30px rgba(36, 79, 85, 0.35);
+  overflow: hidden;
+}
+
+.ft-logo { display: inline-block; justify-self: start; }
+.ft-logo .hl { height: 72px; }
+
+.ft-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ft-head { margin: 0 0 14px; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.ft-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ft-link { font-size: 15.5px; color: var(--muted); transition: color 0.2s; white-space: nowrap; }
+.ft-addr span { white-space: nowrap; }
+.ft-link:hover { color: var(--ink); }
+.ft-link:focus-visible, .ft-mail:focus-visible, .ft-logo:focus-visible { outline: 2px solid #0bd0c9; outline-offset: 3px; border-radius: 4px; }
+.ft-addr { font-style: normal; display: grid; gap: 4px; font-size: 15.5px; line-height: 1.45; color: var(--muted); }
+.ft-mail { margin-top: 12px; color: #079e9a; font-weight: 500; }
+.ft-mail:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* the boxes only show where there is room for them */
+.ft-art { display: none; }
+
+/* desktop: logo, boxes and links spread over the whole card */
+@media (min-width: 1024px) {
+  .ft { padding: 64px 48px 56px; }
+  .ft-card {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 40px;
+    min-height: 315px;
+    padding: 0 clamp(40px, 5vw, 96px);
+  }
+  .ft-logo .hl { height: clamp(96px, 8vw, 150px); }
+  .ft-cols { justify-self: end; grid-template-columns: auto auto; gap: 0; }
+  .ft-col { padding: 0 clamp(32px, 4vw, 80px); }
+  .ft-col:first-child { padding-left: 0; }
+  .ft-col:last-child { padding-right: 0; border-left: 1px solid #d9dee2; }
+  .ft-head { font-size: 21px; margin-bottom: 18px; }
+  .ft-cols ul { gap: 14px; }
+  .ft-link, .ft-addr { font-size: 17px; }
+}
+/* wide screens: room for the boxes between logo and links */
+@media (min-width: 1280px) {
+  .ft-card { grid-template-columns: 1fr 500px 1fr; }
+  .ft-art { display: block; position: relative; align-self: stretch; width: 500px; height: 315px; }
+}
+
+/* 3D boxes: light from the top left, soft shadow falling to the lower left like in the design */
+.ft-box {
+  position: absolute;
+  border-radius: 3px;
+  box-shadow: -26px 14px 34px -14px rgba(84, 92, 140, 0.28);
+  animation: ft-float 7s ease-in-out calc(var(--i) * -0.9s) infinite alternate;
+}
+.ft-box::after { /* thin light top edge */
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; border-radius: 3px 3px 0 0; background: rgba(255, 255, 255, 0.7);
+}
+.ft-w { background: linear-gradient(160deg, #fbfbfc 0%, #eef0f3 60%, #e4e7eb 100%); }
+.ft-p { background: linear-gradient(160deg, #d8faf6 0%, #bdf2ec 55%, #a4e9e2 100%); }
+.ft-g { background: linear-gradient(200deg, #b6efe9 0%, #7fded5 45%, #59cfc5 100%); }
+.ft-t { background: linear-gradient(160deg, #5ae0d6 0%, #3fd2c7 55%, #2cc4b9 100%); }
+@keyframes ft-float { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+
+@media (prefers-reduced-motion: reduce) { .ft-box { animation: none; } }
+
+/* footer logo: the knob moves like the hero one (stops at 30°, 60°, 90°, 120°, with a small snap, then a long turn back round) */
+.ft-logo .hl-knob { animation: ft-knob 9.6s linear 2s infinite backwards; }
+@keyframes ft-knob {
+  0% { transform: rotate(30deg); animation-timing-function: cubic-bezier(0.34, 1.5, 0.5, 1); }
+  7.8125% { transform: rotate(60deg); animation-timing-function: linear; }
+  25% { transform: rotate(60deg); animation-timing-function: cubic-bezier(0.34, 1.5, 0.5, 1); }
+  32.8125% { transform: rotate(90deg); animation-timing-function: linear; }
+  50% { transform: rotate(90deg); animation-timing-function: cubic-bezier(0.34, 1.5, 0.5, 1); }
+  57.8125% { transform: rotate(120deg); animation-timing-function: linear; }
+  75% { transform: rotate(120deg); animation-timing-function: cubic-bezier(0.5, 0, 0.2, 1.15); }
+  88.0208% { transform: rotate(390deg); animation-timing-function: linear; }
+  100% { transform: rotate(390deg); }
+}
+@media (prefers-reduced-motion: reduce) { .ft-logo .hl-knob { animation: none; } }
+
+/* big logo + "prodotto di One Tech" beside it (wraps under it when there is no room) */
+.ft-brand { display: flex; align-items: center; flex-wrap: wrap; gap: 14px clamp(20px, 2vw, 32px); justify-self: start; align-self: center; }
+
+/* desktop: logo and "prodotto di One Tech" always on one line */
+@media (min-width: 1024px) {
+  .ft-brand { flex-wrap: nowrap; }
+  .ft-logo .hl { height: clamp(80px, 6.5vw, 130px); }
+  .otby-foot { font-size: clamp(14px, 1.1vw, 19px); }
+}
+/* the box picture only where it has room, scaled to the space between logo and links */
+@media (min-width: 1280px) {
+  .ft-card { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .ft-art { display: none; }
+}
+@media (min-width: 1366px) {
+  .ft-art { display: block; justify-self: center; align-self: end; width: 100%; max-width: 500px; height: auto; aspect-ratio: 500 / 315; }
+}

@@ -1,18 +1,11 @@
 # AllMessage website (Next.js)
 
-The AllMessage homepage plus the Milo product page at `/products/milo/`.
+The AllMessage homepage plus the Milo product page at `/products/milo/`, built and deployed together.
 
 ## Run it locally
 
-Milo is a separate Next.js app (`Desktop\Milo\web`). Start it first, then this site:
-
 ```bash
-# 1. Milo (port 5050)
-cd C:\Users\Utente\Desktop\Milo\web
-npm run build && npm start
-
-# 2. AllMessage (port 2060)
-cd "C:\Users\Utente\Desktop\New Allmessage Website\web"
+cd web
 npm install
 npm run build && npm start
 ```
@@ -26,16 +19,26 @@ Copy `.env.example` to `.env.local` (or set them on the host):
 
 - `SITE_URL`: the public address, `https://allmessage.otech.one`. Without it the canonical URL,
   sitemap.xml and JSON-LD addresses are left out.
-- `MILO_URL`: where Milo is deployed (see below). Leave it empty to switch Milo off.
-  For local work use `MILO_URL=http://localhost:5050`.
+- Milo page, optional: `NEXT_PUBLIC_GA_ID` (Google Analytics) and `RESEND_API_KEY`,
+  `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` (contact form email). See `.env.example`.
 
-## How Milo is attached
+## The Milo page
 
-`next.config.mjs` forwards every `/products/milo/...` request to the Milo app
-(Next.js "multi-zones"). Milo keeps its own code, build and deploy.
-Milo is on only when `MILO_URL` is set to Milo's address. Without it the pages have no
-Milo links (the header tab is removed, the footer lists Milo as plain text), `/products/milo/`
-returns 404 and robots.txt doesn't list Milo's sitemap.
+Milo is part of this site, at `/products/milo/` (Italian) and `/products/milo/en/` (English),
+with its own privacy and cookie pages. It is built with React, TypeScript and Tailwind CSS
+(Tailwind runs only on Milo's styles, see `next.config.mjs`).
+
+| What | Where |
+| --- | --- |
+| Pages (layout, home, privacy, cookie policy, sitemap) | `app/(milo)/products/milo/` |
+| Sections, header, footer, forms | `milo/components/` |
+| Texts (Italian / English) | `milo/dictionaries/it.json`, `en.json` |
+| Company details, links | `milo/lib/site.ts` |
+| Styles | `milo/milo.css` and the `.css` files next to the components |
+| Images and icon | `public/products/milo/` |
+
+The pages are built per language under `/products/milo/it/` and `/products/milo/en/`;
+`next.config.mjs` shows the Italian ones at the short address without `it/`.
 
 ## Where to edit
 

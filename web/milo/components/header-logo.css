@@ -1,0 +1,42 @@
+/* Header "milo" wordmark (HeaderLogo.tsx). Same drawing as the hero logo (hero/milo-logo.css). */
+.hl { display: block; height: 30px; width: auto; overflow: visible; }
+
+.hl-s {
+  fill: none;
+  stroke: #04282b;
+  stroke-width: 28;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  animation: hl-draw 0.7s cubic-bezier(0.65, 0, 0.2, 1) calc(var(--n) * 0.12s + 0.2s) both;
+}
+@keyframes hl-draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  4% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* the knob appears once the "o" is drawn, then keeps stepping clockwise round the ring */
+.hl-knob-pop { transform-box: view-box; transform-origin: 385px 100px; animation: hl-pop 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) 1.2s both; }
+@keyframes hl-pop { from { transform: scale(0); } to { transform: none; } }
+.hl-knob {
+  fill: #fff;
+  transform-box: view-box;
+  transform-origin: 385px 150px;
+  animation: hl-turn 9.6s cubic-bezier(0.5, 0, 0.25, 1.15) 2s infinite;
+}
+@keyframes hl-turn {
+  0%, 18% { transform: rotate(0deg); }
+  25%, 43% { transform: rotate(90deg); }
+  50%, 68% { transform: rotate(180deg); }
+  75%, 93% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* hover: the knob gives a quick extra spin */
+a:hover > .hl .hl-knob-pop { animation: hl-spin 0.9s cubic-bezier(0.5, 0, 0.2, 1); transform-origin: 385px 150px; }
+@keyframes hl-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hl-s, .hl-knob-pop, .hl-knob { animation: none; }
+}
