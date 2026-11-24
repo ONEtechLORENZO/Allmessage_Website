@@ -25,13 +25,9 @@ export const site = {
     instagram: "",
   },
   themeColor: "#0bd0c9",
-  // Internal links to the rest of the ONE Tech site (same domain, so root-relative paths).
-  // Check these paths against the live ONE Tech site before going live.
+  // The One Tech website (a different domain from this site, so full addresses).
   oneTech: {
-    products: "/products/",
-    tailorLab: "/tailor-lab/",
-    about: "/about/",
-    contact: "/contact/",
+    products: "https://www.otech.one/products/",
   },
   // Date the legal pages were last updated (shown on privacy and cookie pages).
   legalUpdated: "2026-11-05",
@@ -69,6 +65,10 @@ export function alternatesFor(lang: Locale, path: PagePath) {
 
 export const ogLocale: Record<Locale, string> = { it: "it_IT", en: "en_US" };
 
+/** Social-preview image of a language: /products/milo/og/it.png (app/(milo)/products/milo/og/[file]/route.tsx).
+ *  A file-style address, so it loads straight away with no trailing-slash redirect. */
+export const ogImage = (lang: Locale) => ({ url: `${basePath}/og/${lang}.png`, width: 1200, height: 630, alt: site.name });
+
 /** Open Graph fields every page needs. Next.js replaces (not merges) openGraph per page, so pages spread this in. */
 export function ogBase(lang: Locale) {
   return {
@@ -76,5 +76,6 @@ export function ogBase(lang: Locale) {
     siteName: site.name,
     locale: ogLocale[lang],
     alternateLocale: locales.filter((l) => l !== lang).map((l) => ogLocale[l]),
+    images: [ogImage(lang)],
   };
 }

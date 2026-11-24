@@ -19,8 +19,8 @@ Copy `.env.example` to `.env.local` (or set them on the host):
 
 - `SITE_URL`: the public address, `https://allmessage.otech.one`. Without it the canonical URL,
   sitemap.xml and JSON-LD addresses are left out.
-- Milo page, optional: `NEXT_PUBLIC_GA_ID` (Google Analytics) and `RESEND_API_KEY`,
-  `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` (contact form email). See `.env.example`.
+- Milo page, optional: `NEXT_PUBLIC_GA_ID` (Google Analytics, loads only after cookie consent).
+  Milo's "Richiedi Demo" form is the same one as the homepage (`public/js/demo-kit.js`).
 
 ## The Milo page
 
@@ -31,7 +31,7 @@ with its own privacy and cookie pages. It is built with React, TypeScript and Ta
 | What | Where |
 | --- | --- |
 | Pages (layout, home, privacy, cookie policy, sitemap) | `app/(milo)/products/milo/` |
-| Sections, header, footer, forms | `milo/components/` |
+| Sections, header, footer, cookie banner | `milo/components/` |
 | Texts (Italian / English) | `milo/dictionaries/it.json`, `en.json` |
 | Company details, links | `milo/lib/site.ts` |
 | Styles | `milo/milo.css` and the `.css` files next to the components |

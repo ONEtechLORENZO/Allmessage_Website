@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import "@milo/milo.css";
 import { getDictionary } from "@milo/lib/dictionaries";
-import { basePath, hasLocale, locales, ogBase, site, siteUrl } from "@milo/lib/site";
+import { basePath, hasLocale, locales, ogBase, ogImage, site, siteUrl } from "@milo/lib/site";
 import { Header } from "@milo/components/Header";
 import { Footer } from "@milo/components/Footer";
 import { CookieConsent } from "@milo/components/CookieConsent";
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: LayoutProps<"/products/milo/[
     // home-screen icon (the "milo" wordmark on aqua); a static file, so the base path is added by hand
     icons: { icon: { url: `${basePath}/icon.svg`, type: "image/svg+xml" }, apple: { url: `${basePath}/img/apple-touch-icon.png`, sizes: "180x180", type: "image/png" } },
     openGraph: ogBase(lang),
-    twitter: { card: "summary_large_image" },
+    twitter: { card: "summary_large_image", images: [ogImage(lang).url] },
     robots: { index: true, follow: true },
     formatDetection: { telephone: false },
   };

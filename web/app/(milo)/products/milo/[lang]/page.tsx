@@ -36,12 +36,12 @@ export default async function Home({ params }: PageProps<"/products/milo/[lang]"
     url: absoluteUrl(lang),
     brand: { "@type": "Brand", name: "One Tech" },
   };
-  // Breadcrumb: Products › Milo (matches the link from the One Tech products page)
+  // Breadcrumb: Products (on the One Tech website) › Milo
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: dict.nav.products, item: new URL(site.oneTech.products, absoluteUrl(lang)).href },
+      { "@type": "ListItem", position: 1, name: dict.nav.products, item: site.oneTech.products },
       { "@type": "ListItem", position: 2, name: "Milo", item: absoluteUrl(lang) },
     ],
   };

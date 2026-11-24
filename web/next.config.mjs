@@ -38,8 +38,7 @@ const nextConfig = {
     return [
       { source: "/:file(AllMessage_offline.*\\.html)", destination: "/", permanent: true },
       { source: "/products/milo/it/", destination: "/products/milo/", permanent: true },
-      // (not the social-preview image, which Next.js itself links at /products/milo/it/opengraph-image-…)
-      { source: "/products/milo/it/:path((?!opengraph-image).+)", destination: "/products/milo/:path/", permanent: true },
+      { source: "/products/milo/it/:path+", destination: "/products/milo/:path+/", permanent: true },
     ];
   },
   async rewrites() {
