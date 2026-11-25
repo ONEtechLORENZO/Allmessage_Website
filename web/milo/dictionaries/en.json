@@ -109,29 +109,8 @@
       }
     ]
   },
-  "contact": {
-    "title": "Get in touch",
-    "subtitle": "Tell us about your team and we'll get back to you within one business day.",
-    "name": "Full name",
-    "email": "Email",
-    "message": "Message",
-    "consent": "I have read the privacy policy and agree to my data being used to answer this request.",
-    "privacyLink": "privacy policy",
-    "submit": "Send message",
-    "sending": "Sending…",
-    "success": "Thank you! Your message has been sent.",
-    "errors": {
-      "name": "Please enter your name.",
-      "email": "Please enter a valid email address.",
-      "message": "Please write a message of at least 10 characters.",
-      "consent": "Please accept the privacy policy to continue.",
-      "server": "Something went wrong. Please try again later."
-    }
-  },
   "footer": {
     "rights": "All rights reserved.",
-    "vat": "VAT no.",
-    "privacy": "Privacy policy",
     "cookies": "Cookie policy",
     "cookieSettings": "Cookie settings",
     "oneTech": "One Tech",
@@ -153,36 +132,6 @@
   },
   "legal": {
     "updated": "Last updated",
-    "privacy": {
-      "title": "Privacy policy",
-      "description": "How we collect, use and protect your personal data, in line with the EU General Data Protection Regulation (GDPR).",
-      "sections": [
-        {
-          "h": "1. Data controller",
-          "p": "The data controller is {legalName}, {address}, VAT no. {vatNumber}. You can contact us at {privacyEmail}."
-        },
-        {
-          "h": "2. Data we collect",
-          "p": "Data you provide through the contact form (name, email, message) and, only with your consent, anonymous usage data collected by analytics cookies."
-        },
-        {
-          "h": "3. Purposes and legal basis",
-          "p": "We use contact form data to answer your request (Art. 6(1)(b) GDPR, pre-contractual steps). We use analytics data to improve the site, only with your consent (Art. 6(1)(a) GDPR)."
-        },
-        {
-          "h": "4. Retention",
-          "p": "Contact requests are kept for up to 24 months. Analytics data is kept for up to 14 months."
-        },
-        {
-          "h": "5. Recipients",
-          "p": "Data may be processed by service providers acting as data processors (hosting, email delivery, analytics), bound by contract to GDPR obligations. If data is transferred outside the EU, this happens only with adequate safeguards such as Standard Contractual Clauses."
-        },
-        {
-          "h": "6. Your rights",
-          "p": "You have the right to access, correct, delete, restrict or object to the processing of your data, to data portability, and to withdraw consent at any time. Write to {privacyEmail}. You also have the right to lodge a complaint with the Italian Data Protection Authority (Garante per la protezione dei dati personali, www.garanteprivacy.it)."
-        }
-      ]
-    },
     "cookies": {
       "title": "Cookie policy",
       "description": "Which cookies this website uses, why, and how you can manage your preferences.",

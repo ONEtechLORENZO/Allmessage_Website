@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === "production" && !process.env.SITE_URL) {
 // Milo is a page of this site (/products/milo/, code in milo/ and app/(milo)/).
 // Its pages are built per language under /products/milo/it/ and /products/milo/en/;
 // the Italian ones are shown at the short address without "it/".
-const MILO_IT = ["", "privacy/", "cookie-policy/"];
+const MILO_IT = ["", "cookie-policy/"];
 
 // Security headers Milo always sent (it used to be its own app).
 const miloHeaders = [

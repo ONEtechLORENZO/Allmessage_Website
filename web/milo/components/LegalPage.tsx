@@ -3,12 +3,7 @@ import type { Locale } from "@milo/lib/site";
 
 type Section = { h: string; p: string };
 
-// Fills placeholders like {legalName} with the values from src/lib/site.ts.
-const fill = (text: string) =>
-  text.replace(/\{(\w+)\}/g, (m, key: string) =>
-    key in site.company ? site.company[key as keyof typeof site.company] : m,
-  );
-
+// Layout of the cookie policy page: title, last-updated date, then the sections from the dictionary.
 export function LegalPage({
   lang,
   title,
@@ -30,7 +25,7 @@ export function LegalPage({
       {sections.map((s) => (
         <section key={s.h} className="mt-10">
           <h2 className="text-xl font-semibold">{s.h}</h2>
-          <p className="mt-3 leading-relaxed text-muted">{fill(s.p)}</p>
+          <p className="mt-3 leading-relaxed text-muted">{s.p}</p>
         </section>
       ))}
     </article>

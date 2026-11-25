@@ -27,7 +27,7 @@ function currentSpot() {
 export function LanguageSwitcher({ lang, label }: { lang: Locale; label: string }) {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
-  // Keep the visitor on the same page when switching language ("/products/milo/en/privacy/" → "/products/milo/privacy/").
+  // Keep the visitor on the same page when switching language ("/products/milo/en/cookie-policy/" → "/products/milo/cookie-policy/").
   const inner = pathname.startsWith(basePath) ? pathname.slice(basePath.length) : pathname;
   const parts = inner.split("/").filter(Boolean);
   // (the Italian pages are built at ".../it/", so the server sees "it" here even though visitors never do)

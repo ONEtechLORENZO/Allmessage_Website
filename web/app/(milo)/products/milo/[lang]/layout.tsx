@@ -53,11 +53,10 @@ export default async function LangLayout({ children, params }: LayoutProps<"/pro
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: site.company.legalName,
+        name: site.company.name,
         url: siteUrl,
         logo: `${siteUrl}${basePath}/icon.svg`,
         email: site.company.email,
-        vatID: site.company.vatNumber,
         address: site.company.address,
         ...(sameAs.length ? { sameAs } : {}),
       },

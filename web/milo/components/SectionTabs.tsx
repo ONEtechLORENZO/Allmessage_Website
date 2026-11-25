@@ -21,7 +21,7 @@ export function SectionTabs({ tabs, label, home }: { tabs: Tab[]; label: string;
   useEffect(() => {
     // only the visible copy of each block (the previous language's page may still be in the document, hidden)
     const els = tabs.map((t) => [...document.querySelectorAll<HTMLElement>(`section[id="${t.id}"]`)].find((e) => e.getClientRects().length)).filter(Boolean) as HTMLElement[];
-    if (!els.length) return; // e.g. on the privacy page
+    if (!els.length) return; // e.g. on the cookie policy page
     // a block counts as "in view" when it crosses the middle of the screen
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),

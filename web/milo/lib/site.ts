@@ -9,13 +9,11 @@ export const siteUrl = (process.env.SITE_URL || "http://localhost:2060").trim().
 
 export const site = {
   name: "Milo",
-  // Legal details. Italian law requires company name and VAT number (P.IVA) on business websites.
+  // Company behind Milo, shown in the footer, the "Chi siamo" block and the structured data.
   company: {
-    legalName: "Nome Azienda S.r.l.",
-    vatNumber: "IT00000000000",
+    name: "One Tech",
     address: "Via Gustavo Fara 35, 20124 Milano MI",
     email: "sales@otech.one",
-    privacyEmail: "privacy@example.com",
   },
   // Office address as shown in the footer ("Sedi"), one entry per line.
   officeLines: ["Via Gustavo Fara 35,", "20124 Milano MI"],
@@ -29,7 +27,7 @@ export const site = {
   oneTech: {
     products: "https://www.otech.one/products/",
   },
-  // Date the legal pages were last updated (shown on privacy and cookie pages).
+  // Date the legal pages were last updated (shown on the cookie policy page).
   legalUpdated: "2026-11-05",
 } as const;
 
@@ -41,18 +39,18 @@ export const hasLocale = (value: string): value is Locale =>
   (locales as readonly string[]).includes(value);
 
 // Pages that exist in every language. Used by the sitemap and hreflang tags.
-export const pages = ["", "/privacy", "/cookie-policy"] as const;
+export const pages = ["", "/cookie-policy"] as const;
 export type PagePath = (typeof pages)[number];
 
 /** Address of a Milo page on the site. Italian has no language prefix:
- *  "/products/milo/" and "/products/milo/privacy/" are Italian, "/products/milo/en/..." English.
+ *  "/products/milo/" and "/products/milo/cookie-policy/" are Italian, "/products/milo/en/..." English.
  *  (next.config.mjs serves the Italian addresses from the [lang] = "it" pages.) */
 export function localePath(lang: Locale, path: string = "") {
   const p = basePath + (lang === defaultLocale ? path : `/${lang}${path}`);
   return p.endsWith("/") ? p : `${p}/`;
 }
 
-/** Full public URL of a page, e.g. https://example.com/products/milo/en/privacy/ */
+/** Full public URL of a page, e.g. https://example.com/products/milo/en/cookie-policy/ */
 export const absoluteUrl = (lang: Locale, path: string = "") => `${siteUrl}${localePath(lang, path)}`;
 
 /** Canonical URL plus hreflang alternates for one page. */

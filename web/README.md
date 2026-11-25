@@ -25,12 +25,12 @@ Copy `.env.example` to `.env.local` (or set them on the host):
 ## The Milo page
 
 Milo is part of this site, at `/products/milo/` (Italian) and `/products/milo/en/` (English),
-with its own privacy and cookie pages. It is built with React, TypeScript and Tailwind CSS
+with its own cookie policy page. It is built with React, TypeScript and Tailwind CSS
 (Tailwind runs only on Milo's styles, see `next.config.mjs`).
 
 | What | Where |
 | --- | --- |
-| Pages (layout, home, privacy, cookie policy, sitemap) | `app/(milo)/products/milo/` |
+| Pages (layout, home, cookie policy, sitemap) | `app/(milo)/products/milo/` |
 | Sections, header, footer, cookie banner | `milo/components/` |
 | Texts (Italian / English) | `milo/dictionaries/it.json`, `en.json` |
 | Company details, links | `milo/lib/site.ts` |
