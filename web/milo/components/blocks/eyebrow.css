@@ -1,0 +1,34 @@
+/* Numbered section label, matching ".dfr-eyebrow" (block 02) */
+.seb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #079e9a;
+}
+.seb-chip {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #04282b;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.seb-dash { width: 40px; height: 1px; background: rgba(4, 40, 43, 0.25); transform-origin: left; }
+
+[data-js] .seb-chip { animation: seb-pop 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0s both paused; }
+[data-js] .seb-dash { animation: seb-dash 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both paused; }
+[data-js] .seb-text { animation: seb-track 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.17s both paused; }
+[data-go] .seb-a { animation-play-state: running; }
+
+@keyframes seb-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes seb-dash { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes seb-track { from { opacity: 0; letter-spacing: 0.45em; filter: blur(4px); } to { opacity: 1; letter-spacing: 0.14em; filter: none; } }

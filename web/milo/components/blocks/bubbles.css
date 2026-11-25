@@ -1,0 +1,109 @@
+/* Glass chat bubbles (from "Glass Bubbles Motion"), recoloured in Milo aqua.
+   Everything is sized in --u units on a 371×441 grid so it scales with its box. */
+
+.cb-frame {
+  width: min(540px, 100%);
+  margin-inline: auto;
+  container-type: inline-size;
+}
+.cb-stage {
+  --u: calc(100cqw / 371);
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-edge: rgba(255, 255, 255, 0.9);
+  --aqua-a: #5ee8e1;
+  --aqua-b: #0bd0c9;
+  --aqua-c: #079e9a;
+  --shadow: 4, 40, 43;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 371 / 441;
+}
+.cb-scene {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cb-scene.cb-out {
+  opacity: 0;
+  transform: scale(0.97) translateY(calc(var(--u) * -6));
+}
+
+/* bubble wrapper: gentle idle drift */
+.cb-b {
+  position: absolute;
+  left: calc(var(--u) * var(--x));
+  top: calc(var(--u) * var(--y));
+  width: calc(var(--u) * var(--w));
+  height: calc(var(--u) * var(--h));
+  z-index: var(--z, 1);
+}
+.cb-play .cb-b {
+  animation: cb-float var(--fd, 7s) ease-in-out calc(var(--d) + 0.8s) infinite;
+}
+@keyframes cb-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(calc(var(--u) * var(--fx, 0)), calc(var(--u) * var(--fy, -2.2))); }
+}
+
+/* bubble body: pops up from its tail */
+.cb-m {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--u) * var(--r, 8));
+  opacity: 0;
+  transform: translateY(calc(var(--u) * 14)) scale(0.55);
+  transform-origin: var(--ox, 50%) 110%;
+}
+.cb-play .cb-m {
+  animation: cb-pop 0.85s cubic-bezier(0.2, 1.25, 0.35, 1) var(--d) forwards;
+}
+@keyframes cb-pop {
+  0% { opacity: 0; transform: translateY(calc(var(--u) * 14)) scale(0.55); }
+  35% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
+.cb-m::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: calc(var(--u) * var(--tx));
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 8);
+  background: inherit;
+}
+.cb-tr::after { clip-path: polygon(0 0, 100% 0, 82% 100%); }
+.cb-tl::after { clip-path: polygon(0 0, 100% 0, 18% 100%); }
+
+/* frosted glass */
+.cb-glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(calc(var(--u) * 7)) saturate(1.35);
+  backdrop-filter: blur(calc(var(--u) * 7)) saturate(1.35);
+  box-shadow:
+    inset 0 calc(var(--u) * 0.8) 0 rgba(255, 255, 255, 0.95),
+    inset 0 0 0 calc(var(--u) * 0.5) var(--glass-edge),
+    0 calc(var(--u) * 1) calc(var(--u) * 2) rgba(var(--shadow), 0.05),
+    0 calc(var(--u) * 10) calc(var(--u) * 22) calc(var(--u) * -6) rgba(var(--shadow), 0.2);
+}
+.cb-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 45%);
+}
+
+/* solid aqua pearl (was orange) */
+.cb-aqua {
+  background: linear-gradient(135deg, var(--aqua-a) 0%, var(--aqua-b) 55%, var(--aqua-c) 100%);
+  box-shadow:
+    inset 0 calc(var(--u) * 0.8) 0 rgba(200, 255, 252, 0.6),
+    0 calc(var(--u) * 1.5) calc(var(--u) * 3) rgba(7, 158, 154, 0.18),
+    0 calc(var(--u) * 12) calc(var(--u) * 22) calc(var(--u) * -8) rgba(7, 158, 154, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-m { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .cb-play .cb-b { animation: none; }
+}

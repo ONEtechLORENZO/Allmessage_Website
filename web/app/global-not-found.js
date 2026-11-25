@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata = {
   title: "404 – Pagina non trovata / Page not found",
   robots: { index: false, follow: false },
+  icons: { icon: { url: "/icon.png", type: "image/png" } },
 };
 
 export default function GlobalNotFound() {

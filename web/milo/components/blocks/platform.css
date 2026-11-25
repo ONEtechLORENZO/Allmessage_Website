@@ -1,0 +1,66 @@
+/* Block: platform features around the 3D boxes (Platform.tsx, boxes in boxCluster.ts). */
+
+.plt {
+  --ink: #04282b;
+  --muted: #34494b;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  background: #fff;
+  color: var(--ink);
+}
+
+.plt-wrap {
+  display: grid;
+  gap: 28px;
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 56px 20px 72px;
+}
+@media (min-width: 640px) { .plt-wrap { padding-inline: 32px; } }
+
+.plt-head { display: grid; gap: 24px; }
+.plt-title { margin: 0; font-size: clamp(32px, 8vw, 44px); font-weight: 700; line-height: 1.06; letter-spacing: -0.03em; }
+.plt-title .plt-w { animation-duration: 1.1s; }
+.plt-art { position: relative; width: min(100%, 380px); aspect-ratio: 1; margin: 0 auto; }
+.plt-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+@media (min-width: 560px) { .plt-list { grid-template-columns: 1fr 1fr; gap: 28px 24px; } }
+.plt-item { max-width: 21rem; }
+.plt-name { margin: 0 0 8px; font-size: 21px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+.plt-desc { margin: 0; font-size: 15.5px; line-height: 1.45; color: var(--muted); }
+
+/* desktop: three features left, boxes centre, two features right */
+@media (min-width: 1024px) {
+  .plt-wrap {
+    --h: clamp(560px, calc(100svh - 84px), 820px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    column-gap: clamp(24px, 3vw, 56px);
+    row-gap: clamp(32px, 6vh, 64px);
+    min-height: var(--h);
+    padding: clamp(48px, 9vh, 96px) 48px clamp(32px, 6vh, 64px);
+  }
+  /* title at the top of the right column, above the two features there (as in the design) */
+  .plt-head {
+    grid-column: 3; grid-row: 1; align-self: end; justify-self: start; gap: clamp(16px, 3vh, 32px);
+    margin-left: calc(-1 * clamp(80px, 13vw, 230px)); /* starts a little left of the column, over the top of the boxes */
+    position: relative; z-index: 1;
+  }
+  .plt-title { font-size: clamp(32px, min(2.6vw, 5vh), 48px); white-space: nowrap; }
+  .plt-left { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
+  .plt-art { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 100%; max-height: calc(var(--h) * 0.72); }
+  .plt-right { grid-column: 3; grid-row: 2; align-self: start; }
+  .plt-list { grid-template-columns: 1fr; gap: clamp(36px, 7vh, 64px); }
+  .plt-left { justify-self: start; }
+  .plt-right { justify-self: start; }
+  .plt-name { font-size: clamp(19px, 1.45vw, 25px); }
+  .plt-desc { font-size: clamp(14.5px, 1.05vw, 17px); }
+}
+
+/* text reveal: words rise, fade in and un-blur (same as the other blocks) */
+.plt-w { display: inline-block; }
+.plt[data-js] .plt-w { animation: plt-word 0.9s var(--ease) var(--d) both paused; }
+.plt[data-js] .plt-a { animation: plt-soft 1s var(--ease) var(--d) both paused; }
+.plt[data-go] .plt-w,
+.plt[data-go] .plt-a { animation-play-state: running; }
+@keyframes plt-word { from { opacity: 0; transform: translateY(0.4em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes plt-soft { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }

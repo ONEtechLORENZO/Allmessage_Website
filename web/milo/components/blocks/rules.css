@@ -1,0 +1,231 @@
+/* Block: "Language from the model. Decisions from your rules."
+   One block on the robot render's own background colour. Desktop (≥1024px): text left, robot right,
+   the whole block fits one screen. Below that they stack. */
+
+.dfr {
+  --ink: #04282b;
+  --muted: #4a6366;
+  --teal: #0bd0c9;
+  --teal-deep: #079e9a;
+  --panel: #efecf0; /* same as the robot render's background, so it blends in */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.dfr-wrap { display: grid; grid-template-columns: minmax(0, 1fr); }
+
+.dfr-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 20px 32px;
+}
+@media (min-width: 640px) { .dfr-copy { padding-inline: 32px; } }
+
+/* ---------- eyebrow ---------- */
+.dfr-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+.dfr-chip {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.dfr-dash { width: 40px; height: 1px; background: rgba(4, 40, 43, 0.25); transform-origin: left; }
+
+/* ---------- headline ---------- */
+.dfr-title {
+  margin-top: 24px;
+  font-size: clamp(32px, 8vw, 44px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+.dfr-s2 { color: var(--teal-deep); }
+.dfr-w { display: inline-block; }
+
+/* ---------- the three differentiators ---------- */
+.dfr-list {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+}
+.dfr-item { max-width: 27rem; }
+.dfr-top { display: flex; align-items: flex-end; justify-content: flex-start; gap: 12px; }
+.dfr-num {
+  display: inline-flex;
+  font-size: clamp(28px, 4.2vh, 40px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  transition: color 0.4s var(--ease);
+}
+.dfr-mask { display: inline-block; overflow: hidden; padding-bottom: 0.06em; }
+.dfr-digit { display: inline-block; }
+.dfr-tag {
+  display: inline-block;
+  padding-bottom: 0.3em;
+  font-family: var(--font-sora), sans-serif;
+  font-size: clamp(15px, 1.9vh, 17px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--teal-deep);
+}
+.dfr-name {
+  margin-top: clamp(8px, 1.3vh, 14px);
+  font-size: clamp(18px, 2.3vh, 22px);
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.dfr-desc {
+  margin-top: 6px;
+  max-width: 25rem;
+  font-size: clamp(15px, 1.75vh, 16.5px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+.dfr-item:hover .dfr-num { color: var(--teal-deep); }
+
+/* ---------- robot ---------- */
+.dfr-art { display: flex; align-items: center; justify-content: center; padding: 8px 20px 56px; }
+.dfr-art .rm { width: min(100%, 360px); aspect-ratio: 1059 / 1485; }
+/* fade the render's edges so it melts into the block background */
+.dfr-art .rm {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@media (min-width: 1024px) {
+  .dfr-wrap {
+    --h: clamp(600px, calc(100svh - 84px), 900px);
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(32px, 4vw, 80px);
+    max-width: 1560px; /* same container as the "Who it's for" block, so the text lines up */
+    height: var(--h);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .dfr-copy { padding: clamp(24px, 4vh, 56px) 0; }
+  .dfr-title {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    column-gap: 0.4em;
+    margin-top: clamp(16px, 3vh, 32px);
+    font-size: clamp(32px, min(2.6vw, 5vh), 48px);
+  }
+  /* second sentence starts one line lower, next to "the model." — as in the design */
+  .dfr-s1 { max-width: 7.3em; }
+  .dfr-s2 { max-width: 8.6em; text-wrap: balance; padding-top: 1.06em; }
+  .dfr-list { margin-top: clamp(24px, 5vh, 56px); gap: clamp(16px, 3vh, 36px); }
+  .dfr-item-2 { margin-left: min(34%, 18rem); }
+  .dfr-art { padding: 0; }
+  /* robot at ~86% of the block height, centred, no separate panel */
+  .dfr-art .rm { height: calc(var(--h) * 0.86); width: calc(var(--h) * 0.86 * 0.7131); }
+}
+
+/* ---------- text reveal (only when JS is running; otherwise everything is simply visible) ---------- */
+.dfr[data-js] .dfr-w { animation: dfr-word 1.1s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-w-sm { animation-name: dfr-word-sm; animation-duration: 0.9s; }
+.dfr[data-js] .dfr-pop { animation: dfr-pop 0.8s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-dash { animation: dfr-dash 0.9s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-track { animation: dfr-track 1.2s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-digit { animation: dfr-digit 1s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-wipe { animation: dfr-wipe 1.1s var(--ease) var(--d) both paused; }
+.dfr[data-js] .dfr-soft { animation: dfr-soft 1s var(--ease) var(--d) both paused; }
+.dfr[data-go] .dfr-w,
+.dfr[data-go] .dfr-a { animation-play-state: running; }
+
+@keyframes dfr-word { from { opacity: 0; transform: translateY(0.45em); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes dfr-word-sm { from { opacity: 0; transform: translateY(0.4em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes dfr-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes dfr-dash { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes dfr-track { from { opacity: 0; letter-spacing: 0.45em; filter: blur(4px); } to { opacity: 1; letter-spacing: 0.14em; filter: none; } }
+@keyframes dfr-digit { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes dfr-wipe { from { opacity: 0.2; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes dfr-soft { from { opacity: 0; transform: translateY(14px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+
+/* ---------- robot monitor (RobotMonitor.tsx) ---------- */
+.rm { display: block; }
+.rm[data-js]:not([data-shown]) .rm-world { opacity: 0; }
+.rm-in { animation: rm-in 1.4s var(--ease) both; }
+@keyframes rm-in { from { opacity: 0; } to { opacity: 1; } }
+.rm:not([data-run]) * { animation-play-state: paused !important; }
+
+/* continuous chat feed: with JS the live feed replaces the static fallback chat */
+.rm[data-js] .rm-chat { display: none; }
+.rm-track { transition: transform 0.8s cubic-bezier(0.6, 0, 0.3, 1); }
+.rm-slot { transition: opacity 0.6s ease; }
+.rm-slot.gone { opacity: 0; }
+
+/* idle data stream: fine, evenly spaced, always moving */
+.rm-stream { fill: none; stroke: #ffffff; stroke-width: 1.3; stroke-linecap: round; stroke-dasharray: 1.2 15; opacity: 0; transition: opacity 1s ease; }
+.rm[data-ready] .rm-stream { opacity: 0.85; animation: rm-stream 1.6s linear infinite; }
+@keyframes rm-stream { to { stroke-dashoffset: -16.2; } }
+
+/* active pulse: three aligned dashes = tapered light packet */
+.rm-pk { fill: none; stroke-linecap: round; opacity: 0; }
+.rm-pk1 { stroke: var(--teal); stroke-width: 10; filter: url(#rm-b5); }
+.rm-pk2 { stroke: #5fe9e3; stroke-width: 4.2; filter: url(#rm-b1); }
+.rm-pk3 { stroke: #ffffff; stroke-width: 2; }
+
+.rm-sight { fill: none; stroke: var(--teal); stroke-width: 1.2; stroke-dasharray: 2 5; opacity: 0; transition: opacity 0.4s ease; }
+.rm-sight.on { opacity: 0.9; animation: rm-sight 0.9s linear infinite; }
+@keyframes rm-sight { to { stroke-dashoffset: -14; } }
+.rm-eye { transition: transform 0.65s cubic-bezier(0.3, 1, 0.3, 1); }
+.rm-lids { transform-box: fill-box; transform-origin: center; transition: transform 0.1s; }
+.rm-pr { fill: none; stroke: var(--teal); stroke-width: 1.6; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.rm-pr.go { animation: rm-pr 2s var(--ease); }
+@keyframes rm-pr { 0% { opacity: 0.9; transform: scale(0.85); } 100% { opacity: 0; transform: scale(1.7); } }
+.rm-tg { opacity: 0; transition: opacity 0.55s ease; }
+.rm-tg.on { opacity: 1; }
+.rm-tg.on .rm-halo { animation: rm-halo 1.4s ease-in-out infinite alternate; }
+@keyframes rm-halo { from { opacity: 0.7; } to { opacity: 1; } }
+.rm-tint, .rm-chip { mix-blend-mode: multiply; }
+.rm-chip { transition: opacity 0.8s ease; }
+.rm-sheen { mix-blend-mode: soft-light; opacity: 0; }
+.rm-sheen.go { animation: rm-sheen 1.8s ease-in-out; }
+@keyframes rm-sheen { 0% { opacity: 0; transform: translateX(-420px); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateX(420px); } }
+/* chat on the screen (bubbles simply stay visible when JS or motion is off) */
+.rm-chat { transition: transform 0.7s cubic-bezier(0.6, 0, 0.3, 1), opacity 0.6s ease; }
+.rm-chat.out { transform: translateY(-36px); opacity: 0; }
+.rm-bub { transform-box: fill-box; transition: opacity 0.35s ease, transform 0.65s cubic-bezier(0.2, 1.35, 0.4, 1); }
+.rm-bub.l { transform-origin: 0% 100%; }
+.rm-bub.r { transform-origin: 100% 100%; }
+.rm[data-js] .rm-bub:not(.on) { opacity: 0; transform: translateY(10px) scale(0.55); }
+.rm-bar { transform-box: fill-box; transform-origin: 0% 50%; transition: transform 0.9s cubic-bezier(0.3, 0.8, 0.3, 1); }
+.rm-bar2 { transition-delay: 0.18s; }
+.rm[data-js] .rm-bub:not(.on) .rm-bar { transform: scaleX(0); }
+.rm-typing { opacity: 0; transform: scale(0.6); transform-box: fill-box; transform-origin: 0% 100%; transition: opacity 0.25s ease, transform 0.4s cubic-bezier(0.2, 1.3, 0.4, 1); }
+.rm-typing.on { opacity: 1; transform: none; }
+.rm-typing circle { animation: rm-tdot 1s ease-in-out infinite; }
+.rm-typing circle:nth-child(2) { animation-delay: 0.15s; }
+.rm-typing circle:nth-child(3) { animation-delay: 0.3s; }
+@keyframes rm-tdot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.45; } 30% { transform: translateY(-5px); opacity: 1; } }
+.rm-dot { animation: rm-dot 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes rm-dot { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 0.95; transform: scale(1.3); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-dot { animation: none; }
+}

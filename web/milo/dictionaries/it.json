@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "title": "Milo | Agenti AI conversazionali sotto controllo | One Tech",
+    "description": "MILO è il motore di One Tech per agenti AI conversazionali: comprende i messaggi, segue regole di business e controlla le risposte prima dell’invio.",
+    "keywords": [
+      "MILO",
+      "One Tech",
+      "agenti AI conversazionali",
+      "AI conversazionale",
+      "regole di business",
+      "customer service AI"
+    ]
+  },
+  "nav": {
+    "by": "prodotto di",
+    "skip": "Vai al contenuto principale",
+    "features": "Funzionalità",
+    "how": "Come funziona",
+    "faq": "Domande frequenti",
+    "contact": "Contatti",
+    "cta": "Inizia ora",
+    "language": "Lingua",
+    "demo": "Richiedi Demo",
+    "home": "Home",
+    "products": "Prodotti",
+    "tailorLab": "Tailor Lab",
+    "about": "Chi siamo",
+    "siteNav": "Navigazione One Tech",
+    "tabs": {
+      "label": "Sezioni della pagina",
+      "audience": "A chi si rivolge",
+      "differentiators": "Cosa lo distingue",
+      "capabilities": "Come funziona",
+      "platform": "Cosa può fare",
+      "about": "Chi siamo"
+    }
+  },
+  "hero": {
+    "eyebrow": "Novità: è arrivata la versione 2.0",
+    "title": "Gestisci il lavoro del tuo team senza caos",
+    "subtitle": "Milo riunisce attività, scadenze e conversazioni, così tutti sanno sempre cosa fare dopo.",
+    "primary": "Richiedi una demo",
+    "secondary": "Scopri le funzionalità",
+    "wall": {
+      "label": "Milo",
+      "dial": "Rotella: premi per passare al messaggio successivo",
+      "messages": [
+        "Dimmi tutto",
+        "Ci penso io",
+        "Quasi pronto",
+        "Fatto."
+      ],
+      "description": "MILO è il motore digitale per le conversazioni creato da One Tech. Un modello linguistico interpreta i messaggi dei clienti; regole di business deterministiche scelgono il passo successivo; un controllo verifica le risposte prima dell’invio."
+    }
+  },
+  "features": {
+    "title": "Tutto ciò che serve, niente di superfluo",
+    "subtitle": "Pensato per i piccoli team che vogliono andare veloci.",
+    "items": [
+      {
+        "title": "Priorità chiare",
+        "text": "Vedi a colpo d'occhio cosa conta oggi e cosa può aspettare."
+      },
+      {
+        "title": "Aggiornamenti in tempo reale",
+        "text": "Le modifiche compaiono subito per tutto il team, su ogni dispositivo."
+      },
+      {
+        "title": "Sicuro per progettazione",
+        "text": "I tuoi dati sono cifrati e conservati su server nell'Unione Europea."
+      },
+      {
+        "title": "Si integra con i tuoi strumenti",
+        "text": "Collega email, calendario e le app che usi già."
+      }
+    ]
+  },
+  "how": {
+    "title": "Come funziona",
+    "steps": [
+      {
+        "title": "Crea il tuo spazio",
+        "text": "Registrati e invita il tuo team in meno di due minuti."
+      },
+      {
+        "title": "Aggiungi il lavoro",
+        "text": "Importa le attività o parti da un modello pronto."
+      },
+      {
+        "title": "Segui i progressi",
+        "text": "Controlla ogni progetto dall'inizio alla fine in un'unica vista."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "q": "C'è un piano gratuito?",
+        "a": "Sì. Il piano gratuito include fino a 5 utenti, senza limiti di tempo."
+      },
+      {
+        "q": "Dove sono conservati i miei dati?",
+        "a": "Tutti i dati sono conservati su server situati nell'Unione Europea, nel rispetto del GDPR."
+      },
+      {
+        "q": "Posso disdire in qualsiasi momento?",
+        "a": "Sì. Puoi disdire l'abbonamento in qualsiasi momento dalle impostazioni del tuo account."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati.",
+    "cookies": "Cookie policy",
+    "cookieSettings": "Impostazioni cookie",
+    "oneTech": "One Tech",
+    "legal": "Legale",
+    "nav": "Piè di pagina",
+    "offices": "Sedi"
+  },
+  "cookieBanner": {
+    "title": "La tua privacy è importante",
+    "text": "Usiamo cookie tecnici necessari al funzionamento del sito. Con il tuo consenso, usiamo anche cookie analitici per capire come viene usato il sito. Puoi modificare la tua scelta in qualsiasi momento.",
+    "accept": "Accetta tutti",
+    "reject": "Rifiuta",
+    "more": "Leggi la cookie policy"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "text": "La pagina che cerchi non esiste o è stata spostata.",
+    "back": "Torna alla home page"
+  },
+  "legal": {
+    "updated": "Ultimo aggiornamento",
+    "cookies": {
+      "title": "Cookie policy",
+      "description": "Quali cookie usa questo sito, perché e come puoi gestire le tue preferenze.",
+      "sections": [
+        {
+          "h": "1. Cosa sono i cookie",
+          "p": "I cookie sono piccoli file di testo che un sito salva sul tuo dispositivo per ricordare informazioni sulla tua visita."
+        },
+        {
+          "h": "2. Cookie tecnici",
+          "p": "Necessari al funzionamento del sito, ad esempio per ricordare la tua scelta sui cookie (cookie \"consent\", durata 6 mesi). Non richiedono consenso."
+        },
+        {
+          "h": "3. Cookie analitici",
+          "p": "Se accetti, usiamo Google Analytics 4 per raccogliere statistiche aggregate sulle visite (cookie \"_ga\" e \"_ga_*\", durata fino a 14 mesi). Questi cookie non vengono mai installati prima del tuo consenso."
+        },
+        {
+          "h": "4. Gestire la tua scelta",
+          "p": "Puoi modificare la tua scelta in qualsiasi momento tramite il link \"Impostazioni cookie\" nel piè di pagina di ogni pagina, oppure cancellando i cookie dalle impostazioni del browser."
+        }
+      ]
+    }
+  },
+  "audience": {
+    "eyebrow": "A chi si rivolge",
+    "title": "Pensato per chi gestisce processi e conversazioni con i clienti",
+    "primary": {
+      "label": "Principale",
+      "title": "Responsabili operations e customer service",
+      "text": "In aziende con molti processi, soprattutto nei servizi finanziari."
+    },
+    "secondary": {
+      "label": "Anche per",
+      "title": "Team software",
+      "text": "Che integrano nei propri prodotti conversazioni guidate da regole tramite API."
+    },
+    "animationLabel": "Fumetti di chat che compaiono uno dopo l'altro, come una conversazione"
+  },
+  "different": {
+    "eyebrow": "Cosa lo distingue",
+    "title": "Comprende la richiesta. Segue le tue regole.",
+    "items": [
+      {
+        "title": "Decisioni deterministiche",
+        "text": "Milo interpreta il linguaggio; le regole configurate determinano il passo successivo.",
+        "tag": "Milo interpreta, le regole decidono"
+      },
+      {
+        "title": "Dati cliente tracciabili",
+        "text": "Ogni informazione raccolta resta collegata alla sua fonte.",
+        "tag": "Fonte e conferma di ogni dato"
+      },
+      {
+        "title": "Risposte verificate",
+        "text": "Un controllo può bloccare le risposte che non rispettano i criteri impostati.",
+        "tag": "Le risposte seguono le tue regole"
+      }
+    ],
+    "sub": "Milo parla. Le tue regole decidono.",
+    "done": {
+      "title": "Risposta inviata",
+      "text": "nel rispetto delle regole approvate"
+    },
+    "flowLabel": "Un robot controlla a turno ogni passaggio collegato; la luce scorre lungo i collegamenti fino al chip delle regole e poi allo schermo della chat."
+  },
+  "capabilities": {
+    "eyebrow": "Come funziona",
+    "title": "Dal messaggio alla risposta",
+    "label": "Un gruppo di blocchi 3D turchesi e bianchi che si alzano e si abbassano lentamente, come un’onda.",
+    "items": [
+      {
+        "title": "Interpreta",
+        "text": "Comprende il messaggio e individua le informazioni utili."
+      },
+      {
+        "title": "Registra",
+        "text": "Salva le informazioni del cliente, da dove arrivano e se sono state confermate."
+      },
+      {
+        "title": "Decide",
+        "text": "Segue le tue regole per decidere il passaggio successivo."
+      },
+      {
+        "title": "Verifica",
+        "text": "Controlla che la risposta rispetti le regole prima di inviarla."
+      }
+    ]
+  },
+  "platform": {
+    "eyebrow": "Cosa può fare",
+    "title": "Cinque capacità in evidenza",
+    "label": "Un gruppo di blocchi 3D turchesi e bianchi le cui righe e colonne scorrono su, giù e di lato, come un cubo di Rubik.",
+    "items": [
+      {
+        "title": "Regole di processo",
+        "text": "I passaggi del processo sono definiti da regole configurate."
+      },
+      {
+        "title": "Memoria del contesto",
+        "text": "Lo stato della conversazione e i fatti raccolti restano collegati alle loro fonti."
+      },
+      {
+        "title": "Integrazione API",
+        "text": "Milo è progettato per integrarsi con altri software in base ai processi della tua azienda."
+      },
+      {
+        "title": "Risposte protette",
+        "text": "Controlli automatici possono bloccare una risposta al cliente non approvata."
+      },
+      {
+        "title": "Configurazioni degli agenti",
+        "text": "Un unico motore può supportare configurazioni separate per agenti e processi diversi."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Chi siamo",
+    "title": "Milo è un prodotto di {oneTech}, azienda con sede a Milano.",
+    "text": "Sviluppiamo strumenti che semplificano il lavoro quotidiano delle aziende, riducendo le attività ripetitive.",
+    "contact": "Per vedere la piattaforma o ricevere maggiori informazioni:"
+  }
+}

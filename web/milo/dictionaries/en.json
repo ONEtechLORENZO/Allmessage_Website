@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "title": "Milo | Conversational AI agents under control | One Tech",
+    "description": "MILO is One Tech’s engine for conversational AI agents: it understands messages, follows business rules and checks replies before they are sent.",
+    "keywords": [
+      "MILO",
+      "One Tech",
+      "conversational AI agents",
+      "conversational AI",
+      "business rules",
+      "customer service AI"
+    ]
+  },
+  "nav": {
+    "by": "a product of",
+    "skip": "Skip to main content",
+    "features": "Features",
+    "how": "How it works",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Get started",
+    "language": "Language",
+    "demo": "Request a Demo",
+    "home": "Home",
+    "products": "Products",
+    "tailorLab": "Tailor Lab",
+    "about": "About",
+    "siteNav": "One Tech navigation",
+    "tabs": {
+      "label": "Page sections",
+      "audience": "Who it's for",
+      "differentiators": "What sets it apart",
+      "capabilities": "How it works",
+      "platform": "What it can do",
+      "about": "About us"
+    }
+  },
+  "hero": {
+    "eyebrow": "New: version 2.0 is here",
+    "title": "Manage your team's work without the chaos",
+    "subtitle": "Milo brings tasks, deadlines and conversations together, so everyone knows what to do next.",
+    "primary": "Request a demo",
+    "secondary": "See the features",
+    "wall": {
+      "label": "Milo",
+      "dial": "Dial: press to show the next message",
+      "messages": [
+        "Tell me everything",
+        "I'm on it",
+        "Almost ready",
+        "Done."
+      ],
+      "description": "MILO is the digital engine for conversations built by One Tech. A language model interprets customer messages; deterministic business rules choose the next step; a check verifies replies before they are sent."
+    }
+  },
+  "features": {
+    "title": "Everything you need, nothing you don't",
+    "subtitle": "Built for small teams that want to move fast.",
+    "items": [
+      {
+        "title": "Clear priorities",
+        "text": "See at a glance what matters today and what can wait."
+      },
+      {
+        "title": "Real-time updates",
+        "text": "Changes show up instantly for the whole team, on any device."
+      },
+      {
+        "title": "Secure by design",
+        "text": "Your data is encrypted and stored on servers in the European Union."
+      },
+      {
+        "title": "Works with your tools",
+        "text": "Connect email, calendar and the apps you already use."
+      }
+    ]
+  },
+  "how": {
+    "title": "How it works",
+    "steps": [
+      {
+        "title": "Create your space",
+        "text": "Sign up and invite your team in under two minutes."
+      },
+      {
+        "title": "Add your work",
+        "text": "Import tasks or start from a ready-made template."
+      },
+      {
+        "title": "Track progress",
+        "text": "Follow every project from start to finish in one view."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "Is there a free plan?",
+        "a": "Yes. The free plan covers up to 5 users with no time limit."
+      },
+      {
+        "q": "Where is my data stored?",
+        "a": "All data is stored on servers located in the European Union, in line with the GDPR."
+      },
+      {
+        "q": "Can I cancel at any time?",
+        "a": "Yes. You can cancel your subscription at any time from your account settings."
+      }
+    ]
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "cookies": "Cookie policy",
+    "cookieSettings": "Cookie settings",
+    "oneTech": "One Tech",
+    "legal": "Legal",
+    "nav": "Footer",
+    "offices": "Offices"
+  },
+  "cookieBanner": {
+    "title": "We value your privacy",
+    "text": "We use technical cookies needed for the site to work. With your consent, we also use analytics cookies to understand how the site is used. You can change your choice at any time.",
+    "accept": "Accept all",
+    "reject": "Reject",
+    "more": "Read the cookie policy"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has been moved.",
+    "back": "Back to the home page"
+  },
+  "legal": {
+    "updated": "Last updated",
+    "cookies": {
+      "title": "Cookie policy",
+      "description": "Which cookies this website uses, why, and how you can manage your preferences.",
+      "sections": [
+        {
+          "h": "1. What cookies are",
+          "p": "Cookies are small text files that a website stores on your device to remember information about your visit."
+        },
+        {
+          "h": "2. Technical cookies",
+          "p": "Needed for the site to work, for example to remember your cookie choice (cookie \"consent\", lasts 6 months). They do not require consent."
+        },
+        {
+          "h": "3. Analytics cookies",
+          "p": "If you accept, we use Google Analytics 4 to collect aggregated statistics about visits (cookies \"_ga\" and \"_ga_*\", last up to 14 months). These cookies are never set before you give consent."
+        },
+        {
+          "h": "4. Managing your choice",
+          "p": "You can change your choice at any time with the \"Cookie settings\" link in the footer of every page, or by deleting cookies in your browser settings."
+        }
+      ]
+    }
+  },
+  "audience": {
+    "eyebrow": "Who it's for",
+    "title": "Built for teams that manage processes and customer conversations",
+    "primary": {
+      "label": "Primary",
+      "title": "Operations & customer-service leaders",
+      "text": "At process-heavy businesses, especially in financial services."
+    },
+    "secondary": {
+      "label": "Also for",
+      "title": "Software teams",
+      "text": "Who build rule-driven conversations into their own products through an API."
+    },
+    "animationLabel": "Chat bubbles appearing one after another, like a conversation"
+  },
+  "different": {
+    "eyebrow": "What sets it apart",
+    "title": "Understands the request. Follows your rules.",
+    "items": [
+      {
+        "title": "Deterministic decisions",
+        "text": "Milo interprets language; the configured rules decide the next step.",
+        "tag": "Milo interprets, the rules decide"
+      },
+      {
+        "title": "Traceable customer facts",
+        "text": "Every piece of information collected stays linked to its source.",
+        "tag": "Source and confirmation for every detail"
+      },
+      {
+        "title": "Checked responses",
+        "text": "A check can block replies that do not meet the criteria you set.",
+        "tag": "Replies follow your rules"
+      }
+    ],
+    "sub": "Milo talks. Your rules decide.",
+    "done": {
+      "title": "Reply delivered",
+      "text": "within approved rules"
+    },
+    "flowLabel": "A robot checks each connected step in turn; light runs along the wires into the rules chip and up to the chat screen."
+  },
+  "capabilities": {
+    "eyebrow": "How it works",
+    "title": "From message to reply",
+    "label": "A cluster of teal and white 3D blocks that gently rise and fall in a slow wave.",
+    "items": [
+      {
+        "title": "Interpret",
+        "text": "Understand the message and identify useful customer details."
+      },
+      {
+        "title": "Record",
+        "text": "Save customer details, their source, and whether they are confirmed."
+      },
+      {
+        "title": "Decide",
+        "text": "Follow your business rules to choose the next step."
+      },
+      {
+        "title": "Check",
+        "text": "Check the reply against the rules before sending it."
+      }
+    ]
+  },
+  "platform": {
+    "eyebrow": "What it can do",
+    "title": "Five capabilities to feature",
+    "label": "A cluster of teal and white 3D blocks whose rows and columns slide up, down and sideways, like a Rubik's cube.",
+    "items": [
+      {
+        "title": "Process rules",
+        "text": "Process steps are defined by configured rules."
+      },
+      {
+        "title": "Context memory",
+        "text": "Conversation state and collected facts remain linked to their sources."
+      },
+      {
+        "title": "API integration",
+        "text": "Milo is designed to integrate with other software, following your company's processes."
+      },
+      {
+        "title": "Guarded replies",
+        "text": "Automated checks can prevent an unapproved customer-facing response."
+      },
+      {
+        "title": "Agent configurations",
+        "text": "One engine can support separate configurations for different agents and processes."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Milo is a product of {oneTech}, a company based in Milan.",
+    "text": "We build tools that simplify companies' everyday work by reducing repetitive tasks.",
+    "contact": "To see the platform or get more information:"
+  }
+}

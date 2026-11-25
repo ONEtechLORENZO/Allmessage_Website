@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Colour tokens. Contrast between text and background meets WCAG 2.1 AA. */
+:root {
+  --background: #ffffff;
+  --surface: #f6f7fb;
+  --foreground: #14151a;
+  --muted: #4b5060;
+  --border: #e3e5ec;
+  --brand: #0bd0c9; /* Milo aqua */
+  --brand-strong: #079e9a;
+  --brand-contrast: #04282b; /* dark ink: white on aqua is too low-contrast to read */
+  --danger: #b42318;
+  --success: #067647;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0e12;
+    --surface: #16181f;
+    --foreground: #eceef3;
+    --muted: #a6abba;
+    --border: #2a2d38;
+    --brand: #12e6de;
+    --brand-strong: #5ee8e1;
+    --brand-contrast: #04282b;
+    --danger: #f97066;
+    --success: #47cd89;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-contrast: var(--brand-contrast);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-sans: var(--font-sora), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Visible keyboard focus on every interactive element (WCAG 2.4.7). */
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

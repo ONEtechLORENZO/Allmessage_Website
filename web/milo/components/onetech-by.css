@@ -1,0 +1,17 @@
+/* "prodotto di One Tech" (OneTechBy.tsx) */
+.otby { display: inline-flex; align-items: flex-end; gap: 7px; font-size: 12px; font-weight: 500; line-height: 1; color: #5b6d70; white-space: nowrap; transition: opacity 0.25s ease; }
+.otby span { margin-bottom: -0.18em; }
+.otby img { display: block; width: auto; height: 22px; }
+.otby:hover { opacity: 0.75; }
+
+/* header: on the baseline of the milo letters, like the Argo header */
+.otby-head { margin-bottom: 7px; } /* 4px padding under the logo link + the round ends of the letters */
+@media (max-width: 640px) {
+  .otby-head { font-size: 10px; gap: 5px; margin-bottom: 7px; }
+  .otby-head img { height: 16px; }
+}
+
+/* footer: text centred on the One Tech logo, the whole group centred on the big milo logo */
+.otby-foot { align-items: center; gap: 0.45em; font-size: clamp(15px, 1.25vw, 20px); }
+.otby-foot span { margin-bottom: 0; }
+.otby-foot img { height: 1.7em; }

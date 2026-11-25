@@ -1,0 +1,79 @@
+/* Block 05: "Chi siamo" */
+.abt {
+  --ink: #04282b;
+  --muted: #4a6366;
+  --teal: #0bd0c9;
+  --teal-deep: #079e9a;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  background: #ffffff;
+  color: var(--ink);
+  border-top: 1px solid #e3e9e9;
+  overflow: clip; /* the faded logo never makes the page scroll sideways */
+}
+.abt-wrap {
+  display: grid;
+  gap: 40px;
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 72px 20px 80px;
+}
+@media (min-width: 640px) { .abt-wrap { padding-inline: 32px; } }
+
+.abt-head { display: grid; gap: 24px; align-content: start; }
+.abt-title {
+  margin: 0;
+  max-width: 16em;
+  font-size: clamp(32px, 8vw, 44px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.abt-title a { color: var(--teal-deep); text-decoration: none; }
+.abt-title a:hover { color: var(--ink); }
+
+.abt-body { position: relative; isolation: isolate; display: grid; gap: 32px; align-content: end; max-width: 36rem; }
+.abt-mark {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(90%, 320px);
+  height: auto;
+  opacity: 0.08;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.abt[data-js] .abt-mark { opacity: 0; transition: opacity 1.6s var(--ease) 0.4s; }
+.abt[data-go] .abt-mark { opacity: 0.08; }
+.abt-text { margin: 0; font-size: 19px; line-height: 1.55; color: var(--muted); }
+.abt-contact { display: grid; gap: 10px; margin: 0; padding-top: 24px; border-top: 1px solid #e3e9e9; font-size: 16px; color: var(--muted); }
+.abt-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+.abt-mail span { color: var(--teal-deep); font-size: 0.75em; transition: transform 0.3s var(--ease); }
+.abt-mail:hover { color: var(--teal-deep); }
+.abt-mail:hover span { transform: translate(2px, -2px); }
+
+@media (min-width: 1024px) {
+  .abt-wrap {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: clamp(32px, 6vw, 120px);
+    padding: clamp(72px, 12vh, 128px) 48px;
+  }
+  .abt-title { font-size: clamp(32px, min(2.6vw, 5vh), 48px); }
+}
+
+/* reveal (only with JS) */
+.abt[data-js] .abt-a { animation: abt-in 1s var(--ease) var(--d, 0s) both paused; }
+.abt[data-go] .abt-a { animation-play-state: running; }
+@keyframes abt-in { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }

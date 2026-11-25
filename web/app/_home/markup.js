@@ -4,12 +4,7 @@ import en from "../i18n/en.json";
 
 // The homepage markup lives in app/home-markup.html (Italian, the original).
 // The English page is the same markup with every text swapped using app/i18n/en.json.
-// Milo (/products/milo/) is a separate app, switched on only when MILO_URL is set (see next.config.mjs).
-// Without it, the built pages carry no link to it: the header "Milo" tab is removed and the footer
-// lists Milo as plain text, like Argo.
-export const MILO_ON = Boolean(process.env.MILO_URL);
-const source = readFileSync(path.join(process.cwd(), "app", "home-markup.html"), "utf8");
-export const italian = MILO_ON ? source : withoutMilo(source);
+export const italian = readFileSync(path.join(process.cwd(), "app", "home-markup.html"), "utf8");
 export const english = toEnglish(italian);
 
 export const markupFor = (lang) => (lang === "en" ? english : italian);
@@ -43,7 +38,7 @@ function toEnglish(markup) {
   });
 
   // Links: Milo in English, and the language switch marks EN as the current language
-  if (MILO_ON) out = replaceAll(out, 'href="/products/milo/"', 'href="/products/milo/en/"');
+  out = replaceAll(out, 'href="/products/milo/"', 'href="/products/milo/en/"');
   out = replaceAll(out, 'hreflang="it" aria-current="true">IT</a>', 'hreflang="it">IT</a>');
   out = replaceAll(out, 'hreflang="en">EN</a>', 'hreflang="en" aria-current="true">EN</a>');
 
@@ -57,18 +52,4 @@ function toEnglish(markup) {
 function replaceAll(s, from, to) {
   if (!s.includes(from)) throw new Error(`English page: "${from}" not found in home-markup.html`);
   return s.split(from).join(to);
-}
-
-function withoutMilo(markup) {
-  // Header "Milo" tab: drop the whole <a class="nav-link nav-product" ...>...</a> line
-  const tab = '<a class="nav-link nav-product" href="/products/milo/"';
-  const start = markup.indexOf(tab);
-  const end = markup.indexOf("</a>", start);
-  if (start < 0 || end < 0) throw new Error("Milo header tab not found in home-markup.html");
-  const lineStart = markup.lastIndexOf("\n", start);
-  let out = markup.slice(0, lineStart) + markup.slice(end + "</a>".length);
-  // Footer: Milo stays listed, as plain text like Argo
-  out = replaceAll(out, '<li><a href="/products/milo/">Milo</a></li>', "<li>Milo</li>");
-  if (out.includes("/products/milo")) throw new Error("home-markup.html has a Milo link that is not removed when MILO_URL is unset");
-  return out;
 }

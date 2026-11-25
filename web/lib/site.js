@@ -20,6 +20,8 @@ export function pageMetadata(lang, { title, description }) {
     title,
     description,
     applicationName: SITE_NAME,
+    // Tab icon: the "a" of the logo (in public/, so the Milo pages keep their own icon)
+    icons: { icon: { url: "/icon.png", type: "image/png" }, apple: { url: "/apple-icon.png", sizes: "180x180", type: "image/png" } },
     ...(SITE_URL && {
       alternates: {
         canonical: PATHS[lang],
