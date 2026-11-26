@@ -3,7 +3,8 @@
  *
  * 1. Emails every demo request to SALES_EMAIL (reply-to = the customer).
  * 2. Sends the customer a confirmation email (reply-to = SALES_EMAIL).
- * 3. Optionally logs each request in a Google Sheet.
+ * 3. Sends the request to the CRM workflow (Script Property VTIGER_HANDLER_URL).
+ * 4. Optionally logs each request in a Google Sheet.
  *
  * Deploy: Deploy → New deployment → Web app
  *   Execute as: Me   |   Who has access: Anyone
@@ -18,6 +19,18 @@ const SEND_CONFIRMATION = true;
 // Optional: ID of a Google Sheet to log every request (leave '' to disable).
 // The ID is the long code in the sheet URL: docs.google.com/spreadsheets/d/<ID>/edit
 const SHEET_ID = '';
+
+// CRM (crm.otech.one, Workflow Designer workflow "HTTP CREATE LEADS").
+// Every request is also sent there, so the workflow creates the lead.
+// The workflow's address is NOT written here: set it in Apps Script →
+// Project Settings → Script Properties → property VTIGER_HANDLER_URL, in this form (KEY = the CRM access key):
+//   https://crm.otech.one/shorturl.php?id=KEY&direct=1&record_id=0&workflow_id=29
+// No VTIGER_HANDLER_URL = this step is skipped.
+//
+// Value sent as "source". The workflow's "SORGENTE SITO" table turns it into the Lead Source,
+// so the table needs a row for this exact value (like "Web site Kore" for the KORE site),
+// and the Lead Source list needs the option (Settings → Picklist Editor → Leads → Lead Source).
+const CRM_LEAD_SOURCE = 'Allmessage website';
 
 // Header / footer images of the email templates (Canva).
 const IMG = {
@@ -83,7 +96,10 @@ function doPost(e) {
       });
     }
 
-    // 3) Optional log in Google Sheets
+    // 3) Lead in the CRM (a CRM problem never blocks the emails above)
+    sendToCrm_(clean);
+
+    // 4) Optional log in Google Sheets
     if (SHEET_ID) {
       const sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
       if (sheet.getLastRow() === 0) sheet.appendRow(['Data'].concat(FIELDS.map(([, l]) => l)));
@@ -196,6 +212,94 @@ function salesEmailHtml_(c) {
     row("Messaggio / caso d'uso", esc_(c.messaggio).replace(/\n/g, '<br>')) +
     (c.piano ? row('Piano selezionato', esc_(c.piano)) : '') +
     image_(IMG.salesBottom, '0px 0px 24px'));
+}
+
+/* ================= CRM ================= */
+
+// Creates the lead through workflow 29, with the exact names the workflow reads
+// ($env["..."], case-sensitive: a wrong name gives no error, just an empty field).
+// Same names as the KORE site's script. The workflow reads "telefono", removes +39
+// and writes "tel" for the "create Record" block: both are sent.
+// If the CRM does not create the lead, sales gets an email to add it by hand
+// (sales already has the request email, so nothing is lost and the visitor still sees "sent").
+function sendToCrm_(c) {
+  const url = PropertiesService.getScriptProperties().getProperty('VTIGER_HANDLER_URL');
+  if (!url) return;
+  const parts = String(c.referente || '').trim().split(/\s+/);
+  const firstName = parts.length > 1 ? parts.shift() : '';
+  const lastName = parts.join(' ') || c.referente;
+  const milo = c.piano === 'Milo' || /\/products\/milo/.test(c.pagina || '');
+  const product = milo ? 'MILO' : 'ALLMESSAGE';
+  const description = '>>> RICHIESTA DAL FORM SITO ' + product + ' <<<\n\n' + [
+    'Settore: ' + (c.settore || '-'),
+    'Ruolo: ' + (c.ruolo || '-'),
+    'Interesse: ' + (c.interesse || '-'),
+    c.piano && !milo ? 'Piano: ' + c.piano : null,
+    '',
+    'Messaggio:',
+    c.messaggio || '-',
+    '',
+    'Pagina: ' + (c.pagina || '-'),
+  ].filter(l => l !== null).join('\n');
+
+  try {
+    const res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      muteHttpExceptions: true,
+      followRedirects: true,
+      payload: {
+        name: firstName,
+        last_name: lastName,
+        Email: c.email,
+        telefono: c.telefono,
+        tel: c.telefono,
+        company: c.azienda,
+        description: description,
+        source: CRM_LEAD_SOURCE,
+      },
+    });
+    const text = res.getContentText();
+    let out = {};
+    try { out = JSON.parse(text); } catch (e) { /* not JSON: handled below */ }
+    if (res.getResponseCode() !== 200 || out.result !== 'ok') {
+      throw new Error('HTTP ' + res.getResponseCode() + ': ' + text.slice(0, 300));
+    }
+  } catch (err) {
+    console.error('CRM: ' + err.message);
+    try {
+      MailApp.sendEmail({
+        to: SALES_EMAIL,
+        replyTo: c.email,
+        name: 'AllMessage – Sito web',
+        subject: `ERRORE lead dal sito ${product} – da inserire a mano in vtiger – ${c.azienda}`,
+        body: 'Il workflow vtiger non ha creato il lead: ' + err.message + '\n\n' +
+          FIELDS.filter(([k]) => c[k]).map(([k, l]) => `${l}: ${c[k]}`).join('\n'),
+      });
+    } catch (mailErr) {
+      console.error('CRM error email not sent: ' + mailErr.message);
+    }
+  }
+}
+
+// Run this once from the Apps Script editor if the log says "You do not have permission to call
+// UrlFetchApp.fetch": it makes Google ask again for the permissions (tick both boxes).
+function authorize() {
+  ScriptApp.requireScopes(ScriptApp.AuthMode.FULL, [
+    'https://www.googleapis.com/auth/script.send_mail',
+    'https://www.googleapis.com/auth/script.external_request',
+  ]);
+  UrlFetchApp.fetch('https://crm.otech.one/', { muteHttpExceptions: true });
+  console.log('OK: permissions granted, now run testCrm');
+}
+
+// Run this once from the Apps Script editor to send a test lead to the CRM.
+function testCrm() {
+  // Then check the lead in vtiger: name, email, Mobile Phone and Lead Source filled. Delete it afterwards.
+  sendToCrm_({
+    azienda: 'TEST – da cancellare', referente: 'Mario Rossi', email: 'mario.rossi@esempio.it', telefono: '+39 3331234567',
+    settore: 'Test', ruolo: 'Test', interesse: 'Test', messaggio: 'Lead di prova dal sito, da cancellare.',
+    piano: '', pagina: 'https://allmessage.otech.one/',
+  });
 }
 
 /* ================= HELPERS ================= */
