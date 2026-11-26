@@ -59,8 +59,13 @@ function doPost(e) {
   try {
     const data = JSON.parse((e && e.postData && e.postData.contents) || '{}');
 
-    // Honeypot: real visitors never fill this hidden field.
-    if (data.website) return json_({ ok: true });
+    // Honeypot: real visitors never fill this hidden field (field "hp_zq7k" on the site,
+    // sent here as "website"). The bot gets "ok" so it does not know it was dropped.
+    // The log shows the start of the trap value only, never the visitor's details.
+    if (data.website) {
+      console.warn('SCARTATO dalla trappola (campo website pieno): ' + String(data.website).slice(0, 80));
+      return json_({ ok: true });
+    }
 
     const clean = {};
     FIELDS.forEach(([key]) => { clean[key] = String(data[key] || '').trim().slice(0, 2000); });
