@@ -159,6 +159,10 @@
       try {
         if (!DEMO_ENDPOINT) throw new Error('Endpoint non configurato');
         const data = Object.fromEntries(new FormData(form));
+        // Bot trap: hidden field with a meaningless name (hp_zq7k) and autocomplete="new-password",
+        // so browser autofill leaves it empty. The Apps Script still receives it as "website".
+        data.website = data.hp_zq7k || '';
+        delete data.hp_zq7k;
         data.telefono = italianPhone(data.telefono) || data.telefono;
         data.pagina = location.href;
         // text/plain keeps this a "simple" request: Apps Script cannot answer a CORS preflight.
